@@ -16,19 +16,26 @@ public class User {
     private Long id;
     @Column(name = "names", length = 255, nullable = false)
     private String names;
-    @Column(name = "telephone", length = 10, nullable = false)
-    private String telephone;
+
+    @Column(name = "email", length = 500, nullable = false)
+    private String email;
     @Column(name = "password", length = 500, nullable = false)
     private String password;
 
-    public User(String telephone, String password) {
-        this.telephone = telephone;
+
+
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public User(String names, String telephone, String password) {
+    public User(String names, String email, String password) {
         this.names = names;
-        this.telephone = telephone;
+        this.email = email;
         this.password = password;
+    }
+
+    public User(String email) {
+        this.email = email;
     }
 }

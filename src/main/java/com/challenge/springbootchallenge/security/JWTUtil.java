@@ -19,10 +19,10 @@ public class JWTUtil {
     private String secret;
 
     // Method to sign and create a JWT using the injected secret
-    public String generateToken(String telephone) throws IllegalArgumentException, JWTCreationException {
+    public String generateToken(String email) throws IllegalArgumentException, JWTCreationException {
         return JWT.create()
                 .withSubject("User Details")
-                .withClaim("telephone", telephone)
+                .withClaim("email", email)
                 .withIssuedAt(new Date())
                 .withIssuer("YOUR APPLICATION/PROJECT/COMPANY NAME")
                 .sign(Algorithm.HMAC256(secret));

@@ -24,16 +24,16 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired private UserRepo userRepo;
 
     @Override
-    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         // Fetch User from the DB
-        Optional<User> userRes = userRepo.findByTelephone(phone);
+        Optional<User> userRes = userRepo.findByEmail(email);
         // No user found
         if(userRes.isEmpty())
-            throw new UsernameNotFoundException("Could not findUser with phone = " + phone);
+            throw new UsernameNotFoundException("Could not findUser with email = " + email);
         // Return a User Details object using the fetched User information
         User user = userRes.get();
         return new org.springframework.security.core.userdetails.User(
-                user.getTelephone(),
+                user.getEmail(),
                 user.getPassword(),
                 Collections.EMPTY_LIST
         ); // Sets the role of the found user
